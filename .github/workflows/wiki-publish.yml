@@ -56,6 +56,7 @@ jobs:
       - name: Publish wiki
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ALLOW_MISSING_WIKI: "true"
         run: |
           args=(--push)
           if [[ "${{ github.event_name }}" == "workflow_dispatch" && "${{ inputs.clean }}" == "true" ]]; then

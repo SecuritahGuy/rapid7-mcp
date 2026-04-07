@@ -51,3 +51,4 @@ This provides the manual approval gate before any wiki push occurs.
 - If your Wiki has never been initialized on GitHub, create one page once in the GitHub UI, then re-run publish.
 - The script targets the Wiki default branch (`master`).
 - In CI, the script uses `GITHUB_TOKEN` for authenticated clone/push of the wiki repository.
+- If the Wiki repository is missing, publish can be configured to skip gracefully by setting `ALLOW_MISSING_WIKI=true`.
