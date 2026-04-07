@@ -4,11 +4,13 @@
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![CI](https://github.com/SecuritahGuy/rapid7-mcp/actions/workflows/ci.yml/badge.svg)
 
-An MCP server that exposes [Rapid7 InsightVM](https://www.rapid7.com/products/insightvm/) as tools for Claude, Cursor, and any MCP-compatible LLM client. Ask natural-language questions about your vulnerability data — sites, assets, CVEs, scan status — and get structured answers back without writing a single API call.
+A unified MCP server for Rapid7's security platform — exposing [InsightVM](https://www.rapid7.com/products/insightvm/) (vulnerability management), [InsightIDR](https://www.rapid7.com/products/insightidr/) (SIEM/investigations), and [Metasploit Pro](https://www.rapid7.com/products/metasploit/) (pentest telemetry) as tools for Claude, Cursor, and any MCP-compatible LLM client.
+
+Ask natural-language questions across your entire Rapid7 environment — vulnerabilities, active incidents, compromised hosts — and get structured answers without writing a single API call.
 
 Built with [fastapi-mcp](https://github.com/tadata-ru/fastapi-mcp), [FastAPI](https://fastapi.tiangolo.com/), and [httpx](https://www.python-httpx.org/).
 
-> **No Rapid7 instance?** Set `DEMO_MODE=true` to explore all tools against realistic fixture data. Clone, run, connect — no credentials required.
+> **No Rapid7 instance?** Set `DEMO_MODE=true` to explore all 22 tools against realistic fixture data. Clone, run, connect — no credentials required.
 
 ---
 
@@ -17,12 +19,14 @@ Built with [fastapi-mcp](https://github.com/tadata-ru/fastapi-mcp), [FastAPI](ht
 Once connected to Claude, you can ask things like:
 
 > _"Which of my sites has the highest risk score?"_
-> _"What are the critical vulnerabilities on the production web server?"_
+> _"What are the critical vulnerabilities on the production web server, and is there already a remediation project for them?"_
 > _"Is Log4Shell present anywhere in my environment? Show me the CVSS score and any available exploits."_
-> _"What scans are currently running?"_
-> _"Search for all Linux assets in the production network."_
+> _"Are there any open InsightIDR investigations right now? What's the highest priority one?"_
+> _"Search our logs for any connections to this IP address: 185.220.101.1"_
+> _"What active Metasploit sessions exist and what hosts were compromised?"_
+> _"Give me a full security posture summary across sites, open incidents, and active sessions."_
 
-The server translates these into InsightVM API calls and returns clean, structured data that Claude can reason over, summarize, and act on.
+The server translates these into API calls across InsightVM, InsightIDR, and Metasploit Pro and returns structured data that Claude can reason over, correlate, and summarize.
 
 ---
 
@@ -32,28 +36,29 @@ The server translates these into InsightVM API calls and returns clean, structur
 Claude / Cursor / MCP Client
         │  MCP (Streamable HTTP)
         ▼
-┌──────────────────────────────────┐
-│  FastAPI + fastapi-mcp  :8000    │
-│                                  │
-│  GET  /sites                     │
-│  GET  /sites/{id}                │
-│  GET  /assets/{id}               │
-│  POST /assets/search             │
-│  GET  /assets/{id}/vulns         │
-│  GET  /vulnerabilities           │
-│  GET  /vulnerabilities/{id}      │
-│  GET  /scans                     │
-│  GET  /scans/{id}                │
-│                                  │
-│  /mcp  ← MCP endpoint            │
-└─────────────────┬────────────────┘
-                  │  httpx async
-                  ▼
-       Rapid7 InsightVM Console
-            REST API v3 :3780
+┌───────────────────────────────────────────┐
+│  FastAPI + fastapi-mcp  :8000             │
+│                                           │
+│  InsightVM        InsightIDR    MSP       │
+│  ──────────────   ──────────    ───────── │
+│  /sites           /idr/invest.  /workspcs │
+│  /assets          /idr/logs     /sessions │
+│  /asset_groups    /idr/iocs     /loot     │
+│  /vulnerabilities                /tasks   │
+│  /scans                                   │
+│  /remediation_projects                    │
+│  /reports                                 │
+│                                           │
+│  /mcp  ← MCP endpoint                    │
+└──────┬──────────────┬──────────┬──────────┘
+       │ Basic Auth   │ X-Api-Key│ Token
+       ▼              ▼          ▼
+  InsightVM      InsightIDR   Metasploit
+  Console        Cloud API    Pro Console
+  :3780          (regional)   :3790
 ```
 
-Every FastAPI route is automatically published as an MCP tool via `fastapi-mcp`. Operation IDs become tool names, Pydantic schemas become input/output schemas, and docstrings become tool descriptions — the LLM client sees all of this.
+Every FastAPI route is automatically published as an MCP tool via `fastapi-mcp`. Operation IDs become tool names, Pydantic schemas become input/output schemas, and docstrings become tool descriptions.
 
 ---
 
@@ -67,9 +72,9 @@ git clone https://github.com/SecuritahGuy/rapid7-mcp.git
 cd rapid7-mcp
 uv sync
 
-# 2. Configure (or skip this step and use DEMO_MODE)
+# 2. Configure (or skip and use DEMO_MODE)
 cp .env.example .env
-# edit .env with your console URL and credentials
+# edit .env with your console URLs and credentials
 
 # 3. Start the server
 DEMO_MODE=true uv run uvicorn rapid7_mcp.main:app --port 8000
@@ -79,6 +84,23 @@ DEMO_MODE=true uv run uvicorn rapid7_mcp.main:app --port 8000
 - Interactive API docs: `http://localhost:8000/docs`
 
 ---
+
+## Connect to VS Code
+
+Add `.vscode/mcp.json` to your workspace (already included in this repo):
+
+```json
+{
+  "servers": {
+    "rapid7-mcp": {
+      "type": "http",
+      "url": "http://localhost:8000/mcp"
+    }
+  }
+}
+```
+
+Start the server first (`Ctrl+Shift+P` → **Tasks: Run Task** → **Start MCP Server (Demo Mode)**), then connect in the Claude Code panel.
 
 ## Connect to Claude Desktop
 
@@ -94,53 +116,89 @@ Add to `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS)
 }
 ```
 
-Start the server first, then restart Claude Desktop. For demo mode:
-
-```bash
-DEMO_MODE=true uv run uvicorn rapid7_mcp.main:app --port 8000
-```
-
-For a live console, set the env vars in your `.env` file and run without `DEMO_MODE`.
+Start the server first, then restart Claude Desktop.
 
 ---
 
 ## Available MCP Tools
 
-| Tool | Method | Description |
-| --- | --- | --- |
-| `list_sites` | GET | List all scan sites — names, asset counts, risk scores, last scan time |
-| `get_site` | GET | Full details for a single site |
-| `get_asset` | GET | Asset details — IP, hostname, OS, vulnerability counts by severity, risk score |
-| `search_assets` | POST | Filter assets by IP, hostname, OS family, site ID, or tag |
-| `get_asset_vulnerabilities` | GET | All vulnerabilities found on a specific asset |
-| `list_vulnerabilities` | GET | Browse the vulnerability library, filter by severity |
-| `get_vulnerability` | GET | Full vuln details — CVSS v2/v3, CVEs, exploit count, description, categories |
-| `list_scans` | GET | Recent scans with status, duration, and vulnerability summaries |
-| `get_scan` | GET | Details for a single scan |
+### InsightVM — Vulnerability Management
+
+| Tool | Description |
+| --- | --- |
+| `list_sites` | List all scan sites — names, asset counts, risk scores, last scan time |
+| `get_site` | Full details for a single site |
+| `list_asset_groups` | Logical asset groupings (PCI scope, DMZ, dynamic OS groups) |
+| `get_asset_group` | Details for a single asset group |
+| `get_asset` | Asset details — IP, hostname, OS, vulnerability counts by severity, risk score |
+| `search_assets` | Filter assets by IP, hostname, OS family, site ID, or tag |
+| `get_asset_vulnerabilities` | All vulnerabilities found on a specific asset |
+| `get_asset_tags` | Owner, environment, and compliance tags assigned to an asset |
+| `list_vulnerabilities` | Browse the vulnerability library, filter by severity |
+| `get_vulnerability` | Full vuln details — CVSS v2/v3, CVEs, exploit count, description |
+| `list_scans` | Recent scans with status, duration, and vulnerability summaries |
+| `get_scan` | Details for a single scan |
+| `list_remediation_projects` | In-flight fix tracking — owner, due date, affected assets |
+| `get_remediation_project` | Details for a single remediation project |
+| `list_reports` | All configured reports (executive summaries, PCI exports, CSV) |
+| `get_report` | Configuration and status for a single report |
+| `execute_report` | Trigger on-demand report generation, returns download URI |
+
+### InsightIDR — SIEM & Investigations
+
+| Tool | Description |
+| --- | --- |
+| `list_investigations` | Open security incidents — priority, status, assignee, alert summary |
+| `get_investigation` | Full alert timeline for a specific investigation |
+| `query_logs` | LEQL search across firewall, proxy, DNS, and endpoint logs |
+| `list_indicators` | Active threat intelligence IOCs — IPs, domains, hashes, URLs |
+
+### Metasploit Pro — Pentest Telemetry (read-only)
+
+> These tools are intentionally read-only. The LLM can see what Metasploit knows — active sessions, collected credentials, task status — but cannot execute exploits or interact with sessions.
+
+| Tool | Description |
+| --- | --- |
+| `list_workspaces` | All Metasploit Pro workspaces (pentest projects) |
+| `get_workspace` | Details for a single workspace |
+| `list_sessions` | Active Meterpreter and shell sessions — host, exploit, platform, username |
+| `get_loot` | Credentials, hashes, and files extracted from compromised hosts |
+| `list_msp_tasks` | Background tasks — scan imports, report generation, bruteforce jobs |
 
 ---
 
 ## Demo Mode
 
-`DEMO_MODE=true` replaces all API calls with fixture data — realistic responses that match the InsightVM v3 schema. No console, no credentials, no VPN.
+`DEMO_MODE=true` replaces all API calls with fixture data across all three products. No console, no credentials, no VPN.
 
 Fixtures in [`tests/fixtures/`](tests/fixtures/):
 
 | Fixture | Contents |
 | --- | --- |
-| `sites.json` | 3 sites: Production Network, Development, Cloud Infrastructure |
-| `asset.json` / `assets.json` | Ubuntu and RHEL assets with full vulnerability breakdowns |
-| `vulnerability.json` / `vulnerabilities.json` | Log4Shell, OpenSSL CVE-2022-0778, POODLE |
+| `sites.json` / `site.json` | 3 sites: Production, Development, Cloud |
+| `assets.json` / `asset.json` | Ubuntu and RHEL hosts with full vulnerability breakdowns |
+| `asset_groups.json` / `asset_group.json` | PCI Scope, DMZ, Critical Infra, All Linux groups |
+| `asset_tags.json` | Owner, environment, and compliance tags |
+| `vulnerabilities.json` / `vulnerability.json` | Log4Shell, OpenSSL CVE-2022-0778, POODLE |
 | `asset_vulnerabilities.json` | Vulnerabilities scoped to a single asset |
 | `scans.json` / `scan.json` | One finished scan, one running |
-
-This is the fastest way to evaluate the project, develop a new tool, or write a demo.
+| `remediation_projects.json` / `remediation_project.json` | Q1 patching sprint, Log4Shell project |
+| `reports.json` / `report.json` / `report_generate.json` | Executive summary, PCI report, CSV export |
+| `investigations.json` / `investigation.json` | PowerShell execution alert, SSH brute force |
+| `log_search_results.json` | Firewall and proxy hits for a Tor exit node IP |
+| `indicators.json` | Tor IP, Cobalt Strike hash, APT28 C2 domain |
+| `workspaces.json` / `workspace.json` | Default workspace + Q1 external pentest |
+| `sessions.json` | Meterpreter (SYSTEM) + shell (tomcat) sessions |
+| `loot.json` | NTLM hashes + PostgreSQL credentials |
+| `msp_tasks.json` | Completed InsightVM import + running report task |
 
 ---
 
 ## Configuration
 
-All settings via environment variable or `.env` file.
+All settings via environment variable or `.env` file. Copy `.env.example` to get started.
+
+### InsightVM
 
 | Variable | Default | Description |
 | --- | --- | --- |
@@ -148,7 +206,27 @@ All settings via environment variable or `.env` file.
 | `R7_USERNAME` | `admin` | InsightVM user (Global Administrator role required) |
 | `R7_PASSWORD` | `password` | InsightVM password |
 | `R7_VERIFY_SSL` | `false` | Set to `true` if your console has a valid certificate |
-| `DEMO_MODE` | `false` | Return fixture data; skips all console connectivity |
+
+### InsightIDR
+
+| Variable | Default | Description |
+| --- | --- | --- |
+| `IDR_REGION` | `us` | Insight Platform region: `us`, `us2`, `us3`, `eu`, `ca`, `au`, `ap` |
+| `IDR_API_KEY` | _(empty)_ | Insight Platform API key |
+
+### Metasploit Pro
+
+| Variable | Default | Description |
+| --- | --- | --- |
+| `MSP_URL` | `https://localhost:3790` | Metasploit Pro console base URL |
+| `MSP_TOKEN` | _(empty)_ | MSP REST API token |
+| `MSP_VERIFY_SSL` | `false` | Set to `true` if your MSP console has a valid certificate |
+
+### General
+
+| Variable | Default | Description |
+| --- | --- | --- |
+| `DEMO_MODE` | `false` | Return fixture data for all products; skips all live connectivity |
 
 ---
 

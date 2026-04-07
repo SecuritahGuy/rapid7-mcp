@@ -1,0 +1,35 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start MCP Server (Demo Mode)",
+      "type": "shell",
+      "command": "DEMO_MODE=true uv run uvicorn rapid7_mcp.main:app --reload --port 8000",
+      "isBackground": true,
+      "problemMatcher": {
+        "pattern": {
+          "regexp": "."
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "Started reloader process",
+          "endsPattern": "Application startup complete"
+        }
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "mcp"
+      }
+    },
+    {
+      "label": "Run Tests",
+      "type": "shell",
+      "command": "DEMO_MODE=true uv run pytest tests/ -v",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    }
+  ]
+}
