@@ -1,0 +1,24 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "default",
+      "description": "Default workspace",
+      "boundary": null,
+      "limit_to_network": false,
+      "hosts_count": 45,
+      "credentials_count": 12,
+      "sessions_count": 3
+    },
+    {
+      "id": 2,
+      "name": "prod-external-pentest-2024",
+      "description": "Q1 2024 External Penetration Test — Production Perimeter",
+      "boundary": "203.0.113.0/24",
+      "limit_to_network": true,
+      "hosts_count": 18,
+      "credentials_count": 4,
+      "sessions_count": 1
+    }
+  ]
+}

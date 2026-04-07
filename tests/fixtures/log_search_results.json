@@ -1,0 +1,28 @@
+{
+  "id": "search-result-abc123",
+  "leql": {
+    "statement": "where(destination_ip = \"185.220.101.1\")",
+    "during": {"from": 1705276800000, "to": 1705363200000}
+  },
+  "logs": ["firewall-logs", "proxy-logs"],
+  "events": [
+    {
+      "message": "Jan 15 08:14:22 fw01 blocked: src=192.168.1.100 dst=185.220.101.1 dport=443 proto=TCP",
+      "timestamp": 1705306462000,
+      "log_id": "firewall-logs",
+      "sequence_number": 100042
+    },
+    {
+      "message": "Jan 15 08:17:55 proxy01 CONNECT 185.220.101.1:443 - DENIED - Category: Anonymizer",
+      "timestamp": 1705306675000,
+      "log_id": "proxy-logs",
+      "sequence_number": 200187
+    },
+    {
+      "message": "Jan 15 09:02:11 fw01 allowed: src=192.168.1.55 dst=185.220.101.1 dport=9001 proto=TCP",
+      "timestamp": 1705309331000,
+      "log_id": "firewall-logs",
+      "sequence_number": 100098
+    }
+  ]
+}

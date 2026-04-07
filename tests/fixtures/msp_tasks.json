@@ -1,0 +1,26 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "status": "completed",
+      "task_type": "nexpose_import",
+      "description": "Import from InsightVM scan 101 — Production Network",
+      "progress": 100,
+      "workspace": "default",
+      "created_at": "2024-01-15T10:35:00.000Z",
+      "completed_at": "2024-01-15T10:37:22.000Z",
+      "error": null
+    },
+    {
+      "id": 2,
+      "status": "running",
+      "task_type": "report",
+      "description": "Generating pentest report for prod-external-pentest-2024",
+      "progress": 67,
+      "workspace": "prod-external-pentest-2024",
+      "created_at": "2024-01-15T11:50:00.000Z",
+      "completed_at": null,
+      "error": null
+    }
+  ]
+}

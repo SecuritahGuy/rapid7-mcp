@@ -1,0 +1,33 @@
+{
+  "page": {"number": 0, "size": 10, "totalPages": 1, "totalResources": 3},
+  "resources": [
+    {
+      "id": 10,
+      "name": "Owner: Platform Team",
+      "color": "default",
+      "type": "custom",
+      "createdBy": "admin",
+      "riskModifier": null,
+      "links": [{"rel": "self", "href": "/api/3/tags/10"}]
+    },
+    {
+      "id": 11,
+      "name": "Environment: Production",
+      "color": "red",
+      "type": "custom",
+      "createdBy": "admin",
+      "riskModifier": "Very High",
+      "links": [{"rel": "self", "href": "/api/3/tags/11"}]
+    },
+    {
+      "id": 12,
+      "name": "Compliance: PCI",
+      "color": "orange",
+      "type": "custom",
+      "createdBy": "admin",
+      "riskModifier": null,
+      "links": [{"rel": "self", "href": "/api/3/tags/12"}]
+    }
+  ],
+  "links": [{"rel": "self", "href": "/api/3/assets/1/tags?page=0&size=10"}]
+}

@@ -1,0 +1,30 @@
+{
+  "page": {"number": 0, "size": 10, "totalPages": 1, "totalResources": 2},
+  "resources": [
+    {
+      "id": 1,
+      "name": "Q1 2024 — Critical Patching Sprint",
+      "description": "Patch all critical and exploitable vulnerabilities identified in the January audit",
+      "status": "active",
+      "owner": "alice@example.com",
+      "dueDate": "2024-03-31T23:59:59.000Z",
+      "completed": false,
+      "assets": 45,
+      "vulnerabilities": 12,
+      "links": [{"rel": "self", "href": "/api/3/remediation_projects/1"}]
+    },
+    {
+      "id": 2,
+      "name": "Log4Shell Remediation",
+      "description": "Remove or patch all Log4j 2.x instances across the estate",
+      "status": "active",
+      "owner": "bob@example.com",
+      "dueDate": "2024-02-15T23:59:59.000Z",
+      "completed": false,
+      "assets": 17,
+      "vulnerabilities": 3,
+      "links": [{"rel": "self", "href": "/api/3/remediation_projects/2"}]
+    }
+  ],
+  "links": [{"rel": "self", "href": "/api/3/remediation_projects?page=0&size=10"}]
+}

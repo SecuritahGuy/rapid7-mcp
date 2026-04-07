@@ -3,7 +3,13 @@
 from fastapi import APIRouter, Depends, Query
 
 from rapid7_mcp.client import InsightVMClient, get_client
-from rapid7_mcp.models import Asset, AssetList, AssetSearchRequest, AssetVulnerabilityList
+from rapid7_mcp.models import (
+    Asset,
+    AssetList,
+    AssetSearchRequest,
+    AssetTagList,
+    AssetVulnerabilityList,
+)
 
 router = APIRouter()
 
@@ -72,3 +78,27 @@ async def get_asset_vulnerabilities(
         params={"page": page, "size": size},
     )
     return AssetVulnerabilityList(**data)
+
+
+@router.get(
+    "/{asset_id}/tags",
+    response_model=AssetTagList,
+    operation_id="get_asset_tags",
+    summary="Get tags for an asset",
+    description=(
+        "Returns all tags assigned to an asset. Tags carry contextual metadata like owner, "
+        "criticality, compliance scope (e.g. PCI, HIPAA), and environment (production, staging). "
+        "Use this to understand business context before prioritizing remediation."
+    ),
+)
+async def get_asset_tags(
+    asset_id: int,
+    page: int = Query(0, ge=0),
+    size: int = Query(10, ge=1, le=100),
+    client: InsightVMClient = Depends(get_client),
+) -> AssetTagList:
+    data = await client.get(
+        f"/assets/{asset_id}/tags",
+        params={"page": page, "size": size},
+    )
+    return AssetTagList(**data)

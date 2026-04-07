@@ -1,0 +1,12 @@
+{
+  "id": 1,
+  "name": "PCI Scope",
+  "description": "Assets in PCI DSS cardholder data environment",
+  "type": "static",
+  "assets": 23,
+  "riskScore": 54320.0,
+  "links": [
+    {"rel": "self", "href": "/api/3/asset_groups/1"},
+    {"rel": "assets", "href": "/api/3/asset_groups/1/assets"}
+  ]
+}

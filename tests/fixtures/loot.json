@@ -1,0 +1,30 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "host": "192.168.1.100",
+      "port": 445,
+      "service_name": "smb",
+      "loot_type": "hash",
+      "data": "Administrator:500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::",
+      "content_type": "text/plain",
+      "name": "NTLM hashes",
+      "info": "Extracted via Mimikatz",
+      "workspace": "default",
+      "created_at": "2024-01-15T09:55:00.000Z"
+    },
+    {
+      "id": 2,
+      "host": "192.168.1.101",
+      "port": 5432,
+      "service_name": "postgres",
+      "loot_type": "password",
+      "data": "dbuser:P@ssw0rd2024!",
+      "content_type": "text/plain",
+      "name": "PostgreSQL credentials",
+      "info": "Found in /etc/app/database.yml",
+      "workspace": "prod-external-pentest-2024",
+      "created_at": "2024-01-15T10:30:00.000Z"
+    }
+  ]
+}

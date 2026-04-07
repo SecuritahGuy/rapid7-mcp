@@ -1,0 +1,8 @@
+{
+  "id": 42,
+  "status": "started",
+  "uri": "/api/3/reports/1/history/42",
+  "links": [
+    {"rel": "self", "href": "/api/3/reports/1/history/42"}
+  ]
+}

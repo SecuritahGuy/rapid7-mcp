@@ -1,0 +1,42 @@
+{
+  "page": {"number": 0, "size": 10, "totalPages": 1, "totalResources": 4},
+  "resources": [
+    {
+      "id": 1,
+      "name": "PCI Scope",
+      "description": "Assets in PCI DSS cardholder data environment",
+      "type": "static",
+      "assets": 23,
+      "riskScore": 54320.0,
+      "links": [{"rel": "self", "href": "/api/3/asset_groups/1"}]
+    },
+    {
+      "id": 2,
+      "name": "DMZ",
+      "description": "Internet-facing assets in the demilitarized zone",
+      "type": "static",
+      "assets": 18,
+      "riskScore": 88710.5,
+      "links": [{"rel": "self", "href": "/api/3/asset_groups/2"}]
+    },
+    {
+      "id": 3,
+      "name": "Critical Infrastructure",
+      "description": "SCADA, OT, and core networking gear",
+      "type": "static",
+      "assets": 9,
+      "riskScore": 31200.0,
+      "links": [{"rel": "self", "href": "/api/3/asset_groups/3"}]
+    },
+    {
+      "id": 4,
+      "name": "All Linux",
+      "description": "Dynamic group: all assets running a Linux OS family",
+      "type": "dynamic",
+      "assets": 97,
+      "riskScore": 142880.25,
+      "links": [{"rel": "self", "href": "/api/3/asset_groups/4"}]
+    }
+  ],
+  "links": [{"rel": "self", "href": "/api/3/asset_groups?page=0&size=10"}]
+}

@@ -1,0 +1,37 @@
+{
+  "data": [
+    {
+      "id": "ioc-001",
+      "indicator_value": "185.220.101.1",
+      "indicator_type": "IP_ADDRESS",
+      "source": "Tor Exit Node Feed",
+      "threat": "Anonymization Infrastructure",
+      "first_seen": "2023-11-01T00:00:00.000Z",
+      "last_seen": "2024-01-15T00:00:00.000Z",
+      "active": true
+    },
+    {
+      "id": "ioc-002",
+      "indicator_value": "44d88612fea8a8f36de82e1278abb02f",
+      "indicator_type": "FILE_HASH",
+      "source": "Threat Intel: Cobalt Strike",
+      "threat": "Cobalt Strike Beacon",
+      "first_seen": "2023-09-15T00:00:00.000Z",
+      "last_seen": "2024-01-10T00:00:00.000Z",
+      "active": true
+    },
+    {
+      "id": "ioc-003",
+      "indicator_value": "update.malicious-domain.cc",
+      "indicator_type": "DOMAIN",
+      "source": "Threat Intel: APT28",
+      "threat": "APT28 Command and Control",
+      "first_seen": "2024-01-05T00:00:00.000Z",
+      "last_seen": "2024-01-14T00:00:00.000Z",
+      "active": true
+    }
+  ],
+  "metadata": {
+    "total_data": 3
+  }
+}

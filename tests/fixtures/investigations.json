@@ -1,0 +1,59 @@
+{
+  "data": [
+    {
+      "id": "rrn:investigation:us:abc123def456:investigation:INV-001",
+      "title": "Suspicious PowerShell Execution — prod-web-01",
+      "status": "OPEN",
+      "priority": "HIGH",
+      "source": "ALERT",
+      "disposition": "UNDECIDED",
+      "assignee": {
+        "email": "alice@example.com",
+        "name": "Alice Chen"
+      },
+      "alerts": [
+        {
+          "id": "alert-001",
+          "alert_type": "Attacker Technique",
+          "alert_type_description": "PowerShell encoded command execution",
+          "first_event_time": "2024-01-15T08:22:13.000Z",
+          "risk_score": 85
+        }
+      ],
+      "created_time": "2024-01-15T08:25:00.000Z",
+      "last_accessed": "2024-01-15T10:01:00.000Z",
+      "responsibility": "INTERNAL",
+      "rrn": "rrn:investigation:us:abc123def456:investigation:INV-001"
+    },
+    {
+      "id": "rrn:investigation:us:abc123def456:investigation:INV-002",
+      "title": "Brute Force Login Attempts — SSH",
+      "status": "INVESTIGATING",
+      "priority": "CRITICAL",
+      "source": "ALERT",
+      "disposition": "UNDECIDED",
+      "assignee": {
+        "email": "bob@example.com",
+        "name": "Bob Martinez"
+      },
+      "alerts": [
+        {
+          "id": "alert-002",
+          "alert_type": "Brute Force",
+          "alert_type_description": "Multiple failed SSH authentication attempts from single source",
+          "first_event_time": "2024-01-15T02:14:00.000Z",
+          "risk_score": 95
+        }
+      ],
+      "created_time": "2024-01-15T02:20:00.000Z",
+      "last_accessed": "2024-01-15T09:45:00.000Z",
+      "responsibility": "INTERNAL",
+      "rrn": "rrn:investigation:us:abc123def456:investigation:INV-002"
+    }
+  ],
+  "metadata": {
+    "total_data": 2,
+    "index": 0,
+    "size": 20
+  }
+}

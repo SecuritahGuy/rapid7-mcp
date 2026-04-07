@@ -1,0 +1,33 @@
+{
+  "page": {"number": 0, "size": 10, "totalPages": 1, "totalResources": 3},
+  "resources": [
+    {
+      "id": 1,
+      "name": "Executive Vulnerability Summary",
+      "format": "pdf",
+      "status": "Generated",
+      "template": "executive-overview",
+      "uri": "/api/3/reports/1/history/latest",
+      "links": [{"rel": "self", "href": "/api/3/reports/1"}]
+    },
+    {
+      "id": 2,
+      "name": "PCI Compliance Report",
+      "format": "pdf",
+      "status": "Generated",
+      "template": "pci-compliance",
+      "uri": "/api/3/reports/2/history/latest",
+      "links": [{"rel": "self", "href": "/api/3/reports/2"}]
+    },
+    {
+      "id": 3,
+      "name": "Full Vulnerability Export",
+      "format": "csv",
+      "status": "Generated",
+      "template": "export-raw-csv",
+      "uri": "/api/3/reports/3/history/latest",
+      "links": [{"rel": "self", "href": "/api/3/reports/3"}]
+    }
+  ],
+  "links": [{"rel": "self", "href": "/api/3/reports?page=0&size=10"}]
+}

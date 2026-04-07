@@ -1,0 +1,44 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "session_type": "meterpreter",
+      "tunnel_local": "0.0.0.0:4444",
+      "tunnel_peer": "192.168.1.100:51234",
+      "via_exploit": "exploit/multi/handler",
+      "via_payload": "windows/x64/meterpreter/reverse_tcp",
+      "desc": "Meterpreter",
+      "info": "NT AUTHORITY\\SYSTEM @ PROD-WEB-01",
+      "workspace": "default",
+      "target_host": "192.168.1.100",
+      "target_port": 51234,
+      "username": "NT AUTHORITY\\SYSTEM",
+      "uuid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "opened_at": "2024-01-15T09:42:00.000Z",
+      "last_checkin": "2024-01-15T11:55:00.000Z",
+      "platform": "windows",
+      "arch": "x64",
+      "os_name": "Windows Server 2019"
+    },
+    {
+      "id": 2,
+      "session_type": "shell",
+      "tunnel_local": "0.0.0.0:4445",
+      "tunnel_peer": "192.168.1.101:44210",
+      "via_exploit": "exploit/linux/http/apache_log4j_rce",
+      "via_payload": "linux/x64/shell/reverse_tcp",
+      "desc": "Command shell",
+      "info": "tomcat @ prod-db-01",
+      "workspace": "prod-external-pentest-2024",
+      "target_host": "192.168.1.101",
+      "target_port": 44210,
+      "username": "tomcat",
+      "uuid": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+      "opened_at": "2024-01-15T10:18:00.000Z",
+      "last_checkin": "2024-01-15T11:54:30.000Z",
+      "platform": "linux",
+      "arch": "x64",
+      "os_name": "Red Hat Enterprise Linux 8.7"
+    }
+  ]
+}
