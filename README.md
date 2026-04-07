@@ -3,6 +3,7 @@
 ![Python](https://img.shields.io/badge/python-3.11%2B-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![CI](https://github.com/SecuritahGuy/rapid7-mcp/actions/workflows/ci.yml/badge.svg)
+![Wiki Publish](https://github.com/SecuritahGuy/rapid7-mcp/actions/workflows/wiki-publish.yml/badge.svg)
 
 A unified MCP server for Rapid7's security platform — exposing [InsightVM](https://www.rapid7.com/products/insightvm/) (vulnerability management), [InsightIDR](https://www.rapid7.com/products/insightidr/) (SIEM/investigations), and [Metasploit Pro](https://www.rapid7.com/products/metasploit/) (pentest telemetry) as tools for Claude, Cursor, and any MCP-compatible LLM client.
 
@@ -10,7 +11,7 @@ Ask natural-language questions across your entire Rapid7 environment — vulnera
 
 Built with [fastapi-mcp](https://github.com/tadata-ru/fastapi-mcp), [FastAPI](https://fastapi.tiangolo.com/), and [httpx](https://www.python-httpx.org/).
 
-> **No Rapid7 instance?** Set `DEMO_MODE=true` to explore all 22 tools against realistic fixture data. Clone, run, connect — no credentials required.
+> **No Rapid7 instance?** Set `DEMO_MODE=true` to explore all 26 tools against realistic fixture data. Clone, run, connect — no credentials required.
 
 ---
 
@@ -250,6 +251,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for how to add a new tool, extend fixture
 - [Pull request template](.github/pull_request_template.md)
 - [Repository hardening checklist](.github/REPOSITORY_HARDENING.md)
 - [Wiki starter docs](docs/wiki/Home.md)
+- [Wiki publishing guide](docs/wiki/Publishing.md)
 
 ---
 

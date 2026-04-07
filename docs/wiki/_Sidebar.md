@@ -8,4 +8,5 @@
 - [Use Case Playbooks](Use-Case-Playbooks)
 - [Prompt Patterns](Prompt-Patterns)
 - [Demo Mode Scenarios](Demo-Mode-Scenarios)
+- [Publishing the Wiki](Publishing)
 - [Troubleshooting & FAQ](Troubleshooting-and-FAQ)

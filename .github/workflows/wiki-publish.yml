@@ -1,0 +1,64 @@
+name: Wiki Publish
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - docs/wiki/**
+      - scripts/publish_wiki.sh
+      - .github/workflows/wiki-publish.yml
+  pull_request:
+    branches: [main]
+    paths:
+      - docs/wiki/**
+      - scripts/publish_wiki.sh
+      - .github/workflows/wiki-publish.yml
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: "Publish to GitHub Wiki"
+        type: boolean
+        default: false
+      clean:
+        description: "Delete stale wiki markdown pages not present in docs/wiki"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    name: Wiki Sync Preview
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Preview wiki sync (dry-run)
+        run: scripts/publish_wiki.sh
+
+  publish:
+    name: Wiki Publish (Protected)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: [preview]
+    if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && inputs.publish) }}
+    environment:
+      name: wiki-publish
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Publish wiki
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          args=(--push)
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" && "${{ inputs.clean }}" == "true" ]]; then
+            args+=(--clean)
+          fi
+          scripts/publish_wiki.sh "${args[@]}"

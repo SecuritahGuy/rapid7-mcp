@@ -48,6 +48,11 @@ In **Settings → Actions → General**:
 - [ ] Set workflow permissions to **Read repository contents**
 - [ ] Disable “Allow GitHub Actions to create and approve pull requests” unless required
 
+In **Settings → Environments**:
+
+- [ ] Create environment `wiki-publish`
+- [ ] Add required reviewers for manual approval gate before wiki publication
+
 ## 5) Community profile completeness
 
 In **Insights → Community Standards**:
