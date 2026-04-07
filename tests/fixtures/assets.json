@@ -1,0 +1,65 @@
+{
+  "page": {
+    "number": 0,
+    "size": 10,
+    "totalPages": 1,
+    "totalResources": 2
+  },
+  "resources": [
+    {
+      "id": 1,
+      "ip": "192.168.1.100",
+      "hostName": "prod-web-01.example.com",
+      "os": {
+        "description": "Ubuntu Linux 22.04",
+        "family": "Linux",
+        "name": "Ubuntu Linux",
+        "vendor": "Ubuntu",
+        "version": "22.04"
+      },
+      "vulnerabilities": {
+        "critical": 3,
+        "exploits": 2,
+        "high": 12,
+        "info": 4,
+        "low": 23,
+        "malwareKits": 1,
+        "medium": 45,
+        "severe": 15,
+        "total": 83
+      },
+      "riskScore": 45231.5,
+      "lastScanTime": "2024-01-15T09:15:00.000Z",
+      "links": [{"rel": "self", "href": "/api/3/assets/1"}]
+    },
+    {
+      "id": 2,
+      "ip": "192.168.1.101",
+      "hostName": "prod-db-01.example.com",
+      "os": {
+        "description": "Red Hat Enterprise Linux 8.7",
+        "family": "Linux",
+        "name": "Red Hat Enterprise Linux",
+        "vendor": "Red Hat",
+        "version": "8.7"
+      },
+      "vulnerabilities": {
+        "critical": 1,
+        "exploits": 0,
+        "high": 6,
+        "info": 2,
+        "low": 11,
+        "malwareKits": 0,
+        "medium": 29,
+        "severe": 7,
+        "total": 47
+      },
+      "riskScore": 21540.0,
+      "lastScanTime": "2024-01-15T09:20:00.000Z",
+      "links": [{"rel": "self", "href": "/api/3/assets/2"}]
+    }
+  ],
+  "links": [
+    {"rel": "self", "href": "/api/3/assets/search?page=0&size=10"}
+  ]
+}

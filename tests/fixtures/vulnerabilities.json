@@ -1,0 +1,58 @@
+{
+  "page": {
+    "number": 0,
+    "size": 10,
+    "totalPages": 1,
+    "totalResources": 3
+  },
+  "resources": [
+    {
+      "id": "openssl-cve-2022-0778",
+      "title": "OpenSSL Infinite Loop Vulnerability (CVE-2022-0778)",
+      "severity": "Critical",
+      "severityScore": 9.0,
+      "riskScore": 875.4,
+      "cvssV2Score": 7.8,
+      "cvssV3Score": 7.5,
+      "exploits": 1,
+      "malwareKits": 0,
+      "published": "2022-03-15T00:00:00.000Z",
+      "cves": ["CVE-2022-0778"],
+      "categories": ["OpenSSL", "Denial of Service"],
+      "links": [{"rel": "self", "href": "/api/3/vulnerabilities/openssl-cve-2022-0778"}]
+    },
+    {
+      "id": "log4j-cve-2021-44228",
+      "title": "Apache Log4j2 Remote Code Execution (Log4Shell) (CVE-2021-44228)",
+      "severity": "Critical",
+      "severityScore": 10.0,
+      "riskScore": 1000.0,
+      "cvssV2Score": 9.3,
+      "cvssV3Score": 10.0,
+      "exploits": 5,
+      "malwareKits": 3,
+      "published": "2021-12-10T00:00:00.000Z",
+      "cves": ["CVE-2021-44228"],
+      "categories": ["Apache", "Remote Code Execution", "Log4j"],
+      "links": [{"rel": "self", "href": "/api/3/vulnerabilities/log4j-cve-2021-44228"}]
+    },
+    {
+      "id": "ssl-tls-cve-2014-3566",
+      "title": "SSLv3 Padding Oracle On Downgraded Legacy Encryption (POODLE)",
+      "severity": "Severe",
+      "severityScore": 6.0,
+      "riskScore": 342.5,
+      "cvssV2Score": 4.3,
+      "cvssV3Score": 3.4,
+      "exploits": 0,
+      "malwareKits": 0,
+      "published": "2014-10-14T00:00:00.000Z",
+      "cves": ["CVE-2014-3566"],
+      "categories": ["SSL", "TLS", "Protocol"],
+      "links": [{"rel": "self", "href": "/api/3/vulnerabilities/ssl-tls-cve-2014-3566"}]
+    }
+  ],
+  "links": [
+    {"rel": "self", "href": "/api/3/vulnerabilities?page=0&size=10"}
+  ]
+}

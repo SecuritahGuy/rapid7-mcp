@@ -1,0 +1,15 @@
+{
+  "id": 1,
+  "name": "Production Network",
+  "description": "Primary production environment — DMZ and internal servers",
+  "assets": 152,
+  "lastScanTime": "2024-01-15T10:30:00.000Z",
+  "riskScore": 185432.5,
+  "scanTemplate": "full-audit-without-web-spider",
+  "type": "static",
+  "links": [
+    {"rel": "self", "href": "/api/3/sites/1"},
+    {"rel": "assets", "href": "/api/3/sites/1/assets"},
+    {"rel": "scans", "href": "/api/3/sites/1/scans"}
+  ]
+}

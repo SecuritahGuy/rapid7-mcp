@@ -1,0 +1,59 @@
+{
+  "page": {
+    "number": 0,
+    "size": 10,
+    "totalPages": 1,
+    "totalResources": 2
+  },
+  "resources": [
+    {
+      "id": 101,
+      "siteId": 1,
+      "siteName": "Production Network",
+      "scanName": "Production Network — Weekly Full Audit",
+      "status": "finished",
+      "startTime": "2024-01-15T02:00:00.000Z",
+      "endTime": "2024-01-15T10:30:00.000Z",
+      "duration": "PT8H30M",
+      "assets": 152,
+      "vulnerabilities": {
+        "critical": 3,
+        "exploits": 2,
+        "high": 47,
+        "info": 120,
+        "low": 312,
+        "malwareKits": 1,
+        "medium": 891,
+        "severe": 50,
+        "total": 1253
+      },
+      "links": [{"rel": "self", "href": "/api/3/scans/101"}]
+    },
+    {
+      "id": 102,
+      "siteId": 3,
+      "siteName": "Cloud Infrastructure",
+      "scanName": "Cloud Infrastructure — Daily Discovery",
+      "status": "running",
+      "startTime": "2024-01-15T04:00:00.000Z",
+      "endTime": null,
+      "duration": null,
+      "assets": 63,
+      "vulnerabilities": {
+        "critical": 1,
+        "exploits": 0,
+        "high": 12,
+        "info": 45,
+        "low": 98,
+        "malwareKits": 0,
+        "medium": 234,
+        "severe": 13,
+        "total": 345
+      },
+      "links": [{"rel": "self", "href": "/api/3/scans/102"}]
+    }
+  ],
+  "links": [
+    {"rel": "self", "href": "/api/3/scans?page=0&size=10"}
+  ]
+}

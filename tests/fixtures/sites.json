@@ -1,0 +1,58 @@
+{
+  "page": {
+    "number": 0,
+    "size": 10,
+    "totalPages": 1,
+    "totalResources": 3
+  },
+  "resources": [
+    {
+      "id": 1,
+      "name": "Production Network",
+      "description": "Primary production environment — DMZ and internal servers",
+      "assets": 152,
+      "lastScanTime": "2024-01-15T10:30:00.000Z",
+      "riskScore": 185432.5,
+      "scanTemplate": "full-audit-without-web-spider",
+      "type": "static",
+      "links": [
+        {"rel": "self", "href": "/api/3/sites/1"},
+        {"rel": "assets", "href": "/api/3/sites/1/assets"},
+        {"rel": "scans", "href": "/api/3/sites/1/scans"}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Development Environment",
+      "description": "Developer workstations and CI/CD infrastructure",
+      "assets": 47,
+      "lastScanTime": "2024-01-14T22:00:00.000Z",
+      "riskScore": 42180.0,
+      "scanTemplate": "full-audit-without-web-spider",
+      "type": "static",
+      "links": [
+        {"rel": "self", "href": "/api/3/sites/2"},
+        {"rel": "assets", "href": "/api/3/sites/2/assets"},
+        {"rel": "scans", "href": "/api/3/sites/2/scans"}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Cloud Infrastructure",
+      "description": "AWS EC2 instances and RDS databases",
+      "assets": 63,
+      "lastScanTime": "2024-01-15T04:00:00.000Z",
+      "riskScore": 97600.25,
+      "scanTemplate": "discovery",
+      "type": "dynamic",
+      "links": [
+        {"rel": "self", "href": "/api/3/sites/3"},
+        {"rel": "assets", "href": "/api/3/sites/3/assets"},
+        {"rel": "scans", "href": "/api/3/sites/3/scans"}
+      ]
+    }
+  ],
+  "links": [
+    {"rel": "self", "href": "/api/3/sites?page=0&size=10"}
+  ]
+}

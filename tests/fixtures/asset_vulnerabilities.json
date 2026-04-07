@@ -1,0 +1,37 @@
+{
+  "page": {
+    "number": 0,
+    "size": 10,
+    "totalPages": 1,
+    "totalResources": 3
+  },
+  "resources": [
+    {
+      "id": "openssl-cve-2022-0778",
+      "instances": 1,
+      "results": [],
+      "since": "2024-01-10T00:00:00.000Z",
+      "status": "vulnerable",
+      "links": [{"rel": "self", "href": "/api/3/vulnerabilities/openssl-cve-2022-0778"}]
+    },
+    {
+      "id": "log4j-cve-2021-44228",
+      "instances": 2,
+      "results": [],
+      "since": "2022-01-05T00:00:00.000Z",
+      "status": "vulnerable",
+      "links": [{"rel": "self", "href": "/api/3/vulnerabilities/log4j-cve-2021-44228"}]
+    },
+    {
+      "id": "ssl-tls-cve-2014-3566",
+      "instances": 1,
+      "results": [],
+      "since": "2023-06-01T00:00:00.000Z",
+      "status": "vulnerable",
+      "links": [{"rel": "self", "href": "/api/3/vulnerabilities/ssl-tls-cve-2014-3566"}]
+    }
+  ],
+  "links": [
+    {"rel": "self", "href": "/api/3/assets/1/vulnerabilities?page=0&size=10"}
+  ]
+}
