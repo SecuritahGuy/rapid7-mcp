@@ -248,6 +248,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for how to add a new tool, extend fixture
 - [Contributing guide](CONTRIBUTING.md)
 - [Issue templates](.github/ISSUE_TEMPLATE/)
 - [Pull request template](.github/pull_request_template.md)
+- [Repository hardening checklist](.github/REPOSITORY_HARDENING.md)
 
 ---
 
