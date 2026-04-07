@@ -241,6 +241,14 @@ uv run mypy rapid7_mcp/                          # type check
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for how to add a new tool, extend fixtures, and open a pull request.
 
+## Community & Project Health
+
+- [Security policy](SECURITY.md)
+- [Code of Conduct](CODE_OF_CONDUCT.md)
+- [Contributing guide](CONTRIBUTING.md)
+- [Issue templates](.github/ISSUE_TEMPLATE/)
+- [Pull request template](.github/pull_request_template.md)
+
 ---
 
 ## Tech Stack

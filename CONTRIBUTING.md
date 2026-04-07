@@ -2,6 +2,11 @@
 
 Thanks for your interest in contributing. This guide covers everything you need to add a new tool, write tests, and open a pull request.
 
+Please also review:
+
+- [Code of Conduct](CODE_OF_CONDUCT.md)
+- [Security Policy](SECURITY.md) (for responsible vulnerability disclosure)
+
 ---
 
 ## Table of Contents

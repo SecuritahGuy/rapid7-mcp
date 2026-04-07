@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability report
+    url: mailto:security@securitah.io?subject=rapid7-mcp%20security%20report
+    about: Please report vulnerabilities privately per SECURITY.md
